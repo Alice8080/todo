@@ -146,7 +146,7 @@ function selectUpdate() {
 export function removeFirstOrLast(e) {
     const ul = document.querySelectorAll('.item');
     const ids = Object.keys(JSON.parse(localStorage.getItem('list')));
-    const parameter = e.target.getAttribute('id');
+    const parameter = e.currentTarget.getAttribute('id');
     let id;
     if (parameter == 'first') {
         const first = ul[0];
