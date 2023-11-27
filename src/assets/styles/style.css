@@ -28,6 +28,7 @@
 }
 
 .todo {
+    margin-top: 40px;
     display: flex;
     justify-content: space-between;
     align-items: flex-start;
@@ -164,7 +165,7 @@ h3 {
     padding: 30px;
 }
 
-#even {
+#sort-time {
     background: rgba(224, 123, 50, 0.1);
     color: #E07B32;
     box-sizing: border-box;
@@ -172,28 +173,28 @@ h3 {
     -webkit-box-sizing: border-box;
 }
 
-#even:hover {
+#sort-time:hover {
     background: rgba(224, 123, 50, 0.15);
 }
 
-#odd {
+#sort-deadline {
     background: rgba(158, 50, 224, 0.1);
     color: #9E32E0;
 }
 
-#odd:hover {
+#sort-deadline:hover {
     background: rgba(158, 50, 224, 0.15);
 }
 
-#first,
-#last {
-    background: rgba(224, 50, 50, 0.1);
-    color: #E03232;
+#date,
+#time {
+    width: 145px;
 }
 
-#first:hover,
-#last:hover {
-    background: rgba(224, 50, 50, 0.15);
+#sort-time,
+#sort-deadline {
+    /* word-break: keep-all; */
+    font-size: 14px;
 }
 
 /* Блок списка дел */
@@ -209,7 +210,6 @@ h3 {
     font-size: 30px;
     font-weight: 800;
     line-height: normal;
-    margin-bottom: 25px;
 }
 
 .todo__block-subheading {
@@ -223,6 +223,18 @@ h3 {
     margin: 5px 0 10px 0;
 }
 
+.todo__block-header {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    margin-bottom: 25px;
+}
+
+.todo__block-header button {
+    margin-left: 10px;
+    font-size: 15px;
+}
+
 /* Карточка дела */
 
 .item {
@@ -230,7 +242,7 @@ h3 {
     padding: 20px;
     align-items: center;
     justify-content: space-between;
-    gap: 15px;
+    gap: 10px;
     border-radius: var(--border-radius);
     width: 100%;
 }
@@ -240,7 +252,18 @@ h3 {
 }
 
 .item__text {
-    width: 80%;
+    width: 50%;
+    display: flex;
+    justify-content: space-between;
+    gap: 10px;
+    flex-direction: column;
+}
+
+.item__details {
+    display: flex;
+    justify-content: flex-end;
+    gap: 10px;
+    width: 50%;
 }
 
 .item__text h4 {
@@ -248,7 +271,6 @@ h3 {
     font-weight: 700;
     line-height: normal;
     color: var(--text-color);
-    margin-bottom: 10px;
 }
 
 .item__text p {
@@ -271,7 +293,7 @@ h3 {
 
 .item__buttons {
     display: flex;
-    width: 18%;
+    width: 126px;
     justify-content: space-between;
 }
 
@@ -293,66 +315,66 @@ h3 {
 
 /* Карточки текущих дел */
 
-.todo__items_status_in-progress .item {
+.item {
     background: rgba(0, 85, 255, 0.10);
 }
 
-.todo__items_status_in-progress .item__time {
+.item__time {
     background: rgba(0, 85, 255, 0.15);
 }
 
-.todo__items_status_in-progress .item__delete {
+.item__delete,
+.item__update {
     background: rgba(0, 85, 255, 0.1);
     color: rgba(0, 85, 255, 0.4);
 }
 
-.todo__items_status_in-progress .item__delete:hover {
+.item__delete:hover,
+.item__update:hover {
     background: rgba(0, 85, 255, 0.15);
 }
 
-.todo__items_status_in-progress .item__complete {
+.item__complete {
     border: 1px solid var(--accent-color);
     color: var(--accent-color);
 }
 
-.todo__items_status_in-progress .item__complete:hover {
+.item__complete:not(:disabled):hover {
     background: var(--accent-color);
     color: #FFFFFF;
 }
 
 /* Карточки выполненных дел */
 
-.todo__items_status_completed .item {
-    background: rgba(0, 205, 45, 0.1);
+.completed {
+    background-color: rgba(0, 205, 45, 0.1);
 }
 
-.todo__items_status_completed .item__time {
+.completed .item__time {
     background: rgba(0, 205, 45, 0.2);
 }
 
-.todo__items_status_completed .item__delete {
+.completed .item__delete,
+.completed .item__update {
     background: rgba(0, 205, 45, 0.17);
     color: rgba(0, 205, 45, 0.6);
 }
 
-.todo__items_status_completed .item__delete:hover {
+.completed .item__delete:hover,
+.completed .item__update:hover {
     background: rgba(0, 205, 45, 0.3);
     color: rgba(0, 205, 45, 0.65);
 }
 
-.todo__items_status_completed .item__complete {
+.completed .item__complete {
     background: rgba(0, 205, 45, 0.8);
     color: #FFFFFF;
     cursor: auto;
     border: unset;
 }
 
-.even {
-    border: 2px solid #ff8934;
-}
-
-.odd {
-    border: 2px solid  #9E32E0;
+#todo-form-update {
+    display: none;
 }
 
 /* Адаптивность */
@@ -390,7 +412,7 @@ h3 {
         width: 50%;
     }
 
-    .item__delete {
+    .item__delete, .item__update {
         margin-right: 10px;
     }
 }

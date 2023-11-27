@@ -10,21 +10,16 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@200;300;400;500;600;700;800;900&display=swap"
         rel="stylesheet">
-    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="./src/assets/styles/style.css">
     <script src="https://code.iconify.design/iconify-icon/1.0.7/iconify-icon.min.js"></script>
-    <script defer src="js/script.js" type="module"></script>
+    <script src="./src/js/main.js" type="module" defer></script>
     <title>ToDo</title>
 </head>
 <body>
-    <div class="wrapper">
-        <header>
-            <nav>
-                <a href="/">Список ToDo</a>
-            </nav>
-        </header>
-        <main class="todo">
+    <main class="wrapper">
+        <div class="todo">
             <div class="todo__blocks">
-                <h1 class="todo__heading">Список ToDo</h1>
+                <h1 class="todo__heading">ToDo</h1>
                 <form id="todo-form" class="todo__form">
                     <h2 class="todo__form-heading">Добавить новое дело</h2>
                     <hr>
@@ -45,34 +40,43 @@
                         <iconify-icon icon="material-symbols:add"></iconify-icon>
                     </button>
                 </form>
-                <div class="todo__buttons">
-                    <button id="even" class="todo__select">
-                        Выделить все четные
-                    </button>
-                    <button id="odd" class="todo__select">
-                        Выделить все нечетные
-                    </button>
-                    <button id="first" class="todo__remove">
-                        Удалить первое дело
-                        <iconify-icon icon="material-symbols:delete" width="18" height="18"></iconify-icon>
-                    </button>
-                    <button id="last" class="todo__remove">
-                        Удалить последнее дело
-                        <iconify-icon icon="material-symbols:delete" width="18" height="18"></iconify-icon>
-                    </button>
-                </div>
             </div>
             <div class="todo__block">
-                <h2 class="todo__block-heading">ToDo</h2>
-                <h3 class="todo__block-subheading">Текущие дела</h3>
+                <div class="todo__block-header">
+                    <h2 class="todo__block-heading">ToDo</h2>
+                    <button id="sort-deadline" class="todo__select">
+                        Сортировать по сроку выполнения
+                    </button>
+                    <button id="sort-time" class="todo__select">
+                        Сортировать по времени создания 
+                    </button>
+                </div>
                 <hr>
-                <ul id="in-progress" class="todo__items todo__items_status_in-progress"></ul>
-                <h3 class="todo__block-subheading">Выполненные дела</h3>
-                <hr>
-                <ul id="completed" class="todo__items todo__items_status_completed"></ul>
+                <ul id="in-progress" class="todo__items"></ul>
             </div>
-        </main>
-        <footer></footer>
-    </div>
+        </div>
+        <div class="todo__blocks">
+            <form id="todo-form-update" class="todo__form">
+                <h2 class="todo__form-heading">Изменить дело</h2>
+                <hr>
+                <label for="title">Название <span>*</span></label>
+                <input type="text" id="title-update" name="title" placeholder="Введите название дела" required>
+
+                <label for="description">Описание</label>
+                <textarea id="description-update" name="description" placeholder="Введите описание дела"></textarea>
+
+                <label for="date">Выберите дату</label>
+                <input type="date" id="date-update" name="date" />
+
+                <label for="time">Выберите время</label>
+                <input type="time" id="time-update" name="time" />
+
+                <button type="submit">
+                    Изменить
+                    <iconify-icon icon="material-symbols:published-with-changes-rounded" width="22" height="22"></iconify-icon>
+                </button>
+            </form>
+        </div>
+    </main>
 </body>
 </html>
